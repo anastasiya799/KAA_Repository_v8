@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <conio.h>
 using namespace std;
-
+int a, b, ost;
 void printMenu() {
     system("cls"); // очищаем экран
     cout << "1. Enter A\n";
@@ -13,8 +13,7 @@ void printMenu() {
 }
 
 // Ветка branch1
-int enterA() {
-    int a;
+int enterA() {    
     cout << "Enter A: "; 
     while (!(cin >> a) || (cin.peek() != '\n'))
     {
@@ -27,7 +26,6 @@ int enterA() {
 
 // Ветка branch2
 int enterB() {
-    int b;
     cout << "Enter B: ";
     while (!(cin >> b) || (cin.peek() != '\n'))
     {
@@ -39,8 +37,9 @@ int enterB() {
 }
 
 // Ветка branch3
-int calcOst() {
-    return 0;
+int calcOst(int a, int b) {
+    if (a!= 0 && b!=0) return a%b;
+    else { cout << "Error\n"; return 0; }
 }
 
 // Ветка branch4
@@ -68,13 +67,14 @@ int main()
         variant = getVariant(5);
         switch (variant) {
         case 1:
-            enterA();
+            a = enterA();
             break;
         case 2:
-            enterB();
+            b = enterB();
             break;
         case 3:
-            calcOst();
+            ost = calcOst(a,b);
+            cout << "A%B = " << ost << "\n";
             break;
         case 4:
             resDel();
