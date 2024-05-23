@@ -27,7 +27,15 @@ int enterA() {
 
 // Ветка branch2
 int enterB() {
-    return 0;
+    int b;
+    cout << "Enter B: ";
+    while (!(cin >> b) || (cin.peek() != '\n'))
+    {
+        cin.clear();
+        while (cin.get() != '\n');
+        cout << "Incorrect input.\nTry again: ";
+    }
+    return b;
 }
 
 // Ветка branch3
