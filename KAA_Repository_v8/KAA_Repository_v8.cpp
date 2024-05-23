@@ -9,27 +9,35 @@ void printMenu() {
     cout << "3. Calculate the remainder of A divided by B\n";
     cout << "4. Calculate integer division of B by A\n";
     cout << "5. Exit\n\n";
-    cout << ">";
+    cout << "> ";
 }
 
 // Ветка branch1
 int enterA() {
-
+    int a;
+    cout << "Enter A: "; 
+    while (!(cin >> a) || (cin.peek() != '\n'))
+    {
+        cin.clear();
+        while (cin.get() != '\n');
+        cout << "Incorrect input.\nTry again: ";
+    }
+    return a;
 }
 
 // Ветка branch2
 int enterB() {
-
+    return 0;
 }
 
 // Ветка branch3
 int calcOst() {
-
+    return 0;
 }
 
 // Ветка branch4
 int resDel() {
-
+    return 0;
 }
 
 int getVariant(int count) {
