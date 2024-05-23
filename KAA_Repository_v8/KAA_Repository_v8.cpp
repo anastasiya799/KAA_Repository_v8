@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <conio.h>
 using namespace std;
-int a, b, ost;
+int a, b, ost, res;
 void printMenu() {
     system("cls"); // очищаем экран
     cout << "1. Enter A\n";
@@ -39,12 +39,13 @@ int enterB() {
 // Ветка branch3
 int calcOst(int a, int b) {
     if (a!= 0 && b!=0) return a%b;
-    else { cout << "Error\n"; return 0; }
+    else { cout << "Error!\n"; return 0; }
 }
 
 // Ветка branch4
-int resDel() {
-    return 0;
+int resDel(int b, int a) {
+    if (a != 0 && b != 0) return b / a;
+    else { cout << "Error!\n"; return 0; }
 }
 
 int getVariant(int count) {
@@ -77,7 +78,8 @@ int main()
             cout << "A%B = " << ost << "\n";
             break;
         case 4:
-            resDel();
+            res = resDel(b,a);
+            cout << "B/A = " << ost << "\n";
             break;
         }
         if (variant != 5) {
