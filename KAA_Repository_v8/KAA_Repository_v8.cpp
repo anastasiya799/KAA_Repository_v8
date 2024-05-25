@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <string>
 #include <conio.h>
 using namespace std;
 int a, b, ost, res;
@@ -12,37 +13,22 @@ void printMenu() {
     cout << "> ";
 }
 
-// Ветка branch1
-int enterA() {    
-    cout << "Enter A: "; 
-    while (!(cin >> a) || (cin.peek() != '\n'))
-    {
-        cin.clear();
-        while (cin.get() != '\n');
-        cout << "Incorrect input.\nTry again: ";
+bool isInputCorrect(string input) {
+    if (input.empty()) return false;
+    try {
+        int number = stoi(input);
     }
-    return a;
+    catch (...) {
+        return false;
+    }
+    return true;
 }
 
-// Ветка branch2
-int enterB() {
-    cout << "Enter B: ";
-    while (!(cin >> b) || (cin.peek() != '\n'))
-    {
-        cin.clear();
-        while (cin.get() != '\n');
-        cout << "Incorrect input.\nTry again: ";
-    }
-    return b;
-}
-
-// Ветка branch3
 int calcOst(int a, int b) {
     if (a!= 0 && b!=0) return a%b;
     else { cout << "Error!\n"; return 0; }
 }
 
-// Ветка branch4
 int resDel(int b, int a) {
     if (a != 0 && b != 0) return b / a;
     else { cout << "Error!\n"; return 0; }
@@ -55,7 +41,7 @@ int getVariant(int count) {
     {
         cin.clear();
         while (cin.get() != '\n');
-        cout << "Incorrect input. Try again: ";// выводим сообщение об ошибке
+        cout << "Incorrect input. Try again: ";
     }
     return variant;
 }
@@ -63,23 +49,36 @@ int getVariant(int count) {
 int main()
 {
     int variant;
+    string str_input = "";
     do {
         printMenu();
-        variant = getVariant(5);
+        variant = getVariant(5); 
+        getline(cin, str_input);
+        str_input = "";
         switch (variant) {
-        case 1:
-            a = enterA();
+        case 1:     
+            while (!isInputCorrect(str_input)) {
+                cout << "Input A\n";
+                getline(cin, str_input);
+            }            
+            a = stoi(str_input);
             break;
         case 2:
-            b = enterB();
+            while (!isInputCorrect(str_input)) {
+                cout << "Input B\n";
+                getline(cin, str_input);
+            }
+            b = stoi(str_input);
             break;
         case 3:
             ost = calcOst(a,b);
-            cout << "A%B = " << ost << "\n";
+            cout <<"A = " << a << "\nB = " << b 
+                    << "\nA%B = " << ost << "\n";
             break;
         case 4:
             res = resDel(b,a);
-            cout << "B/A = " << ost << "\n";
+            cout << "A = " << a << "\nB = " << b
+                    << "\nB/A = " << ost << "\n";
             break;
         }
         if (variant != 5) {
